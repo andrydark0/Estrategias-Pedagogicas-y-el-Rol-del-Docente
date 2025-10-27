@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Presentación: Aprendizaje Colaborativo y Socioconstructivismo</title>
+
+<style>
+/* ---------- Estilos (tomados de tu diseño) ---------- */
+:root{
+  --bg1:#1e3c72;
+  --bg2:#2a5298;
+  --bg3:#7e57c2;
+  --accent:#7e57c2;
+  --card:#ffffff;
+  --text:#424242;
+}
+
+html,body{
+  width:100%;
+  height:100%;
+  margin:0;
+  padding:0;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x:hidden;
+  background: linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%);
+}
+
+/* container */
+.h5p-presentation{
+  width:100%;
+  max-width:1100px;
+  margin:24px auto;
+  padding:0 16px;
+  box-sizing:border-box;
+  min-height:500px;
+}
+.slide-wrapper{
+  width:100%;
+  max-width:900px;
+  margin:0 auto;
+  padding:20px 0;
+}
+.slide-content{
+  background:var(--card);
+  border-radius:12px;
+  padding:30px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.28);
+  min-height:460px;
+  box-sizing:border-box;
+  position:relative;
+}
+
+/* slide */
+.slide{ display:none; }
+.slide.active{ display:block; animation: fadeSlide 0.4s ease-in; }
+@keyframes fadeSlide{ from{opacity:0; transform:translateY(15px);} to{opacity:1; transform:translateY(0);} }
+
+/* typography */
+.icon-header{ font-size:2.4em; text-align:center; margin-bottom:8px; }
+h1{ color:var(--bg1); font-size:1.9em; margin-bottom:12px; text-align:center; font-weight:700; line-height:1.3; }
+h2{ color:var(--bg2); font-size:1.6em; margin-bottom:18px; border-bottom:3px solid var(--accent); padding-bottom:10px; font-weight:600; }
+h3{ color:var(--bg1); font-size:1.2em; margin-bottom:10px; font-weight:600; }
+p{ color:var(--text); line-height:1.6; margin:8px 0; font-size:0.95em; }
+
+/* boxes */
+.highlight-box{
+  background: linear-gradient(135deg,#e3f2fd 0%,#f3e5f5 100%);
+  border-left:4px solid var(--bg2);
+  padding:15px;
+  margin:15px 0;
+  border-radius:8px;
+}
+.key-point{
+  background:#fafafa;
+  padding:14px 18px;
+  margin:12px 0;
+  border-radius:8px;
+  border-left:4px solid var(--accent);
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+.comparison-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  margin:15px 0;
+}
+.comparison-card{
+  background: linear-gradient(135deg,#e8eaf6 0%,#f3e5f5 100%);
+  padding:18px;
+  border-radius:10px;
+  border-top:3px solid var(--bg2);
+  box-shadow:0 3px 12px rgba(0,0,0,0.1);
+}
+
+/* synthesis */
+.synthesis-box{
+  background: linear-gradient(135deg,#fff9c4 0%,#f8bbd0 100%);
+  padding:18px;
+  border-radius:10px;
+  margin-top:20px;
+  text-align:center;
+  border:2px solid var(--accent);
+}
+
+/* navigation */
+.navigation{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:22px;
+  padding-top:18px;
+  border-top:2px solid #e0e0e0;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.nav-btn{
+  background: linear-gradient(135deg,var(--bg2) 0%, var(--bg3) 100%);
+  color:white;
+  border:none;
+  padding:11px 24px;
+  font-size:0.95em;
+  border-radius:20px;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  font-weight:600;
+}
+.nav-btn:hover:not(:disabled){ transform:translateY(-2px); box-shadow:0 5px 16px rgba(42,82,152,0.4); }
+.nav-btn:disabled{ opacity:0.4; cursor:not-allowed; }
+
+/* dots & progress */
+.slide-dots{ display:flex; gap:6px; justify-content:center; align-items:center; }
+.dot{
+  width:10px; height:10px; border-radius:50%; background:#bdbdbd; transition:all 0.3s ease; cursor:pointer; border:none; padding:0;
+}
+.dot.active{ background:var(--bg2); width:28px; border-radius:5px; }
+.progress-bar{ width:100%; height:6px; background:#e0e0e0; border-radius:3px; overflow:hidden; margin-bottom:16px; }
+.progress-fill{ height:100%; width:0%; background: linear-gradient(90deg,var(--bg2) 0%,var(--bg3) 100%); transition:width 0.35s ease; }
+
+/* responsive */
+@media (max-width:768px){
+  .slide-content{ padding:20px; min-height:380px; }
+  .comparison-grid{ grid-template-columns:1fr; }
+  h1{ font-size:1.5em;}
+  h2{ font-size:1.3em;}
+}
+@media (max-width:480px){
+  .slide-wrapper{ padding:10px; }
+  .navigation{ gap:8px; }
+  .nav-btn{ flex:1; min-width:120px; }
+}
+</style>
+</head>
+<body>
+
+<div class="h5p-presentation" id="pres-coopcol">
+  <div class="slide-wrapper">
+    <div class="progress-bar" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="slide-content" role="region" aria-label="Presentación sobre Aprendizaje Colaborativo y Socioconstructivismo">
+
+      <!-- Slide 1: Portada -->
+      <section class="slide active" data-slide="0" aria-hidden="false">
+        <div class="icon-header">🤝📚</div>
+        <h1>Aprendizaje Cooperativo vs Colaborativo</h1>
+        <p class="subtitle" style="text-align:center; color:#555; font-style:italic;">
+          Distinciones clave y orientación socioconstructivista
+        </p>
+
+        <div class="highlight-box" style="text-align:center;">
+          <p style="font-size:1.05em;"><strong>Idea central:</strong> En el enfoque socioconstructivista (colaborativo) el grupo actúa como sujeto colectivo y el resultado es un producto emergente; en el cooperativo la tarea suele dividirse por el docente.</p>
+        </div>
+      </section>
+
+      <!-- Slide 2: Diferencias Cooperativo vs Colaborativo -->
+      <section class="slide" data-slide="1" aria-hidden="true">
+        <h2>Cooperativo vs Colaborativo</h2>
+
+        <div class="comparison-grid" aria-hidden="false">
+          <div class="comparison-card">
+            <h3>Cooperativo</h3>
+            <p><strong>Estructura:</strong> Tarea dividida por el docente.</p>
+            <p><strong>Responsabilidad:</strong> Individual y asignada.</p>
+            <p><strong>Resultado:</strong> Suma de partes (productos parciales).</p>
+          </div>
+
+          <div class="comparison-card">
+            <h3>Colaborativo (SC)</h3>
+            <p><strong>Estructura:</strong> Tarea emergente, roles dinámicos entre participantes.</p>
+            <p><strong>Responsabilidad:</strong> Compartida y colectiva.</p>
+            <p><strong>Resultado:</strong> Producto emergente, irreductible al aporte individual.</p>
+          </div>
+        </div>
+
+        <div class="key-point">
+          <strong>Transición recomendada:</strong>
+          <p>Diseñar actividades donde la cooperación inicial (división) sea desplazada progresivamente por procesos colaborativos que fomenten negociación, construcción conjunta y responsabilidad compartida.</p>
+        </div>
+      </section>
+
+      <!-- Slide 3: Tutoría entre Pares y Coenseñanza -->
+      <section class="slide" data-slide="2" aria-hidden="true">
+        <div class="icon-header">🧑‍🏫👩‍🏫</div>
+        <h2>Tutoría entre Pares / Coenseñanza</h2>
+
+        <div class="key-point"><strong>Definición:</strong> Estrategias que distribuyen la enseñanza entre pares y docentes, aprovechando diferencias de nivel o experiencia.</div>
+
+        <p>La tutoría entre pares suele requerir una diferencia básica (edad, nivel o experiencia). El docente organiza roles de enseñante y aprendiz, supervisa y diseña tareas que beneficien el aprendizaje de ambos.</p>
+
+        <div class="highlight-box">
+          <p><strong>Buenas prácticas:</strong></p>
+          <ul style="margin-left:14px;">
+            <li>Asignación clara de roles y objetivos.</li>
+            <li>Andamiaje inicial y retirada gradual.</li>
+            <li>Documentar procesos para reflexionar sobre estrategias.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Slide 4: Fomentar la Argumentación y el Diálogo -->
+      <section class="slide" data-slide="3" aria-hidden="true">
+        <div class="icon-header">💬⚖️</div>
+        <h2>Argumentación y Diálogo Crítico</h2>
+
+        <div class="key-point"><strong>Por qué importa:</strong> La argumentación (argumento/contraargumento) promueve pensamiento crítico, justificación de ideas y construcción compartida de conocimiento.</div>
+
+        <p>Actividades recomendadas: debates estructurados, análisis de casos, escritura de posiciones y rondas de contraargumentación. Estas prácticas desarrollan capacidad para evaluar evidencia, modular opiniones y llegar a consensos mejor fundamentados.</p>
+      </section>
+
+      <!-- Slide 5: Rol del Docente Socioconstructivista -->
+      <section class="slide" data-slide="4" aria-hidden="true">
+        <div class="icon-header">🧭✨</div>
+        <h2>Rol del Docente Socioconstructivista</h2>
+
+        <div class="key-point"><strong>Facilitador y mediador:</strong> No un transmisor; promueve ambientes de aprendizaje, diseña tareas y organiza interacciones significativas.</div>
+
+        <p>El docente debe:</p>
+        <ul style="margin-left:14px;">
+          <li>Crear oportunidades para la regulación social del pensamiento.</li>
+          <li>Modelar estrategias, preguntas y andamiaje.</li>
+          <li>Ser creativo: diseñar actividades dinámicas y adaptativas.</li>
+        </ul>
+
+        <div class="highlight-box">
+          <strong>Meta:</strong> Catalizar la apropiación del saber sociocultural por parte del estudiante, favoreciendo autonomía progresiva.
+        </div>
+      </section>
+
+      <!-- Slide 6: Aplicaciones prácticas y síntesis -->
+      <section class="slide" data-slide="5" aria-hidden="true">
+        <div class="icon-header">🔁📚</div>
+        <h2>Síntesis y Aplicaciones</h2>
+
+        <div class="comparison-grid">
+          <div class="comparison-card">
+            <h3>Diseño de actividades</h3>
+            <p>Crear tareas auténticas que requieran negociación, roles rotativos y producto compartido.</p>
+          </div>
+          <div class="comparison-card">
+            <h3>Evaluación formativa</h3>
+            <p>Valorar procesos colaborativos: registros, rúbricas centradas en diálogo, coevaluación y autoevaluación.</p>
+          </div>
+        </div>
+
+        <div class="synthesis-box">
+          <h3>Mensaje clave</h3>
+          <p>Transitar de la cooperación a la colaboración, potenciar la tutoría entre pares, fomentar la argumentación y asumir al docente como mediador para construir aprendizajes significativos.</p>
+        </div>
+      </section>
+
+      <!-- Navigation -->
+      <div class="navigation" role="navigation" aria-label="Controles de la presentación">
+        <button class="nav-btn" id="prevBtn" aria-label="Anterior">← Anterior</button>
+
+        <div class="slide-dots" id="dots" role="tablist" aria-label="Ir a diapositivas">
+          <!-- dots generados por JS -->
+        </div>
+
+        <button class="nav-btn" id="nextBtn" aria-label="Siguiente">Siguiente →</button>
+      </div>
+
+    </div> <!-- .slide-content -->
+  </div> <!-- .slide-wrapper -->
+</div> <!-- .h5p-presentation -->
+
+<script>
+/* Encapsulado para evitar conflictos */
+(function(){
+  const root = document.getElementById('pres-coopcol') || document.getElementById('pres-coopcol') /* fallback */;
+  // If not present, use the element we created
+  const container = document.getElementById('pres-coopcol') || document.querySelector('.h5p-presentation');
+  if(!container) return;
+
+  const slides = Array.from(container.querySelectorAll('.slide'));
+  const prevBtn = container.querySelector('#prevBtn');
+  const nextBtn = container.querySelector('#nextBtn');
+  const dotsContainer = container.querySelector('#dots');
+  const progressFill = container.querySelector('#progressFill');
+  let current = 0;
+  const total = slides.length;
+
+  // create dots
+  slides.forEach((s,i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i===0 ? ' active' : '');
+    d.type = 'button';
+    d.setAttribute('aria-label','Diapositiva ' + (i+1));
+    d.dataset.index = i;
+    d.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(d);
+  });
+  const dots = Array.from(dotsContainer.children);
+
+  function update(){
+    slides.forEach((s,i) => {
+      const active = i === current;
+      s.classList.toggle('active', active);
+      s.setAttribute('aria-hidden', (!active).toString());
+    });
+    dots.forEach((d,i) => d.classList.toggle('active', i===current));
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === total -1;
+    if(progressFill) progressFill.style.width = (((current+1)/total)*100) + '%';
+  }
+
+  function goTo(idx){
+    if(idx<0 || idx>=total) return;
+    current = idx;
+    update();
+    // focus first heading in slide for accessibility
+    const heading = slides[current].querySelector('h2, h1');
+    if(heading && typeof heading.focus === 'function') heading.focus();
+  }
+
+  function change(n){ goTo(Math.min(total-1, Math.max(0, current + n))); }
+
+  prevBtn.addEventListener('click', () => change(-1));
+  nextBtn.addEventListener('click', () => change(1));
+
+  // keyboard
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'ArrowLeft') change(-1);
+    if(e.key === 'ArrowRight') change(1);
+  });
+
+  // swipe (mobile)
+  (function(){
+    const el = container.querySelector('.slide-content');
+    if(!el || !('ontouchstart' in window)) return;
+    let startX = 0, endX = 0;
+    el.addEventListener('touchstart', (ev) => { startX = ev.touches[0].clientX; });
+    el.addEventListener('touchmove', (ev) => { endX = ev.touches[0].clientX; });
+    el.addEventListener('touchend', () => {
+      const dx = endX - startX;
+      const thr = 50;
+      if(Math.abs(dx) > thr) {
+        if(dx < 0) change(1); else change(-1);
+      }
+      startX = endX = 0;
+    });
+  })();
+
+  // init
+  update();
+
+})(); 
+</script>
+
+</body>
+</html>
